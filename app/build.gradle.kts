@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -36,10 +37,17 @@ android {
     defaultConfig{
         minSdkVersion (21)
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
 
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
     implementation ("androidx.appcompat:appcompat:1.3.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
