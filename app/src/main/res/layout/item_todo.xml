@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="26dp"
+    android:background="@drawable/todo_item_background"
+    android:layout_marginHorizontal="33dp"
+    android:layout_marginVertical="22dp"
+    >
+
+
+    <View
+        android:id="@+id/vertical_line"
+        android:layout_width="4dp"
+        android:layout_height="62dp"
+        android:background="@drawable/vertical_line_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/todo_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/vertical_line"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="play basketball"
+        android:layout_marginStart="24dp"
+        style="@style/todo_title_style"
+        android:fontFamily="@font/poppins_bold"
+        />
+
+    <TextView
+        android:id="@+id/todo_description_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/todo_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/todo_title_tv"
+        tools:text="play basketball"
+        android:layout_marginTop="4dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/roboto"
+        />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/ic_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="24dp"
+        app:cardBackgroundColor="@color/blue"
+        >
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/done_icon"
+            android:layout_marginHorizontal="21dp"
+            android:layout_marginVertical="8dp"
+            />
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

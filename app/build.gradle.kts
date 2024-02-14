@@ -47,6 +47,7 @@ dependencies {
     val room_version = "2.6.1"
 
     implementation("androidx.room:room-runtime:$room_version")
+    implementation ("com.github.prolificinteractive:material-calendarview:2.0.0")
     kapt("androidx.room:room-compiler:$room_version")
     implementation ("androidx.appcompat:appcompat:1.3.0")
     implementation("androidx.core:core-ktx:1.12.0")

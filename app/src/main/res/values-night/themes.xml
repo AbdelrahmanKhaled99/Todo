@@ -4,4 +4,9 @@
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/blue</item>
     </style>
+    <style name="todo_title_style">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
 </resources>
