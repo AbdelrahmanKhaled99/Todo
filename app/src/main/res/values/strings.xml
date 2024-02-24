@@ -10,4 +10,9 @@
     <string name="description">Description</string>
     <string name="select_time">Select Time</string>
     <string name="add">add</string>
+    <string name="there_is_no_todos_in_this_day_to_add_one_click_on">There is no todos in this day. To add one click on +.</string>
+    <string name="edit_task">Edit task</string>
+    <string name="this_is_title">This is title</string>
+    <string name="task_details">Task details</string>
+    <string name="save_changes">Save changes</string>
 </resources>
