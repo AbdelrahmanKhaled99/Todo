@@ -4,38 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.edit_todo.EditTodoActivity">
+    tools:context=".ui.edit_todo.EditTodoFragment">
 
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="157dp"
-        android:background="@color/blue">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/tool_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/to_do_list"
-                android:textColor="@color/text_color"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-        </com.google.android.material.appbar.MaterialToolbar>
-    </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
         android:id="@+id/linear_layout_edit_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="110dp"
         android:background="@drawable/edit_todo_linear_layout_background"
         android:orientation="vertical">
@@ -49,6 +28,7 @@
             android:text="@string/edit_task" />
 
         <EditText
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -57,6 +37,7 @@
             />
 
         <EditText
+            android:id="@+id/task_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -65,6 +46,7 @@
             />
 
         <TextView
+            android:id="@+id/select_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -80,7 +62,21 @@
             android:textSize="18sp"
             tools:text="12/12/2024" />
 
+        <CheckBox
+            android:id="@+id/is_done_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Is done"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_changes_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

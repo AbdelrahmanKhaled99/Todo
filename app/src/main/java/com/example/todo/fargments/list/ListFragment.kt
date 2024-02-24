@@ -7,18 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
+import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.RecyclerView
+import com.example.todo.Constants
 import com.example.todo.R
-import com.example.todo.TodoInformation
 import com.example.todo.database.MyDatebase
 import com.example.todo.databinding.FragmentListBinding
 import com.example.todo.timeInMillis
-import com.example.todo.ui.edit_todo.EditTodoActivity
+import com.example.todo.ui.edit_todo.EditTodoFragment
 import com.example.todo.ui.home.adapters.TodoAdapter
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import java.time.LocalDate
-import java.time.ZoneId
 
 class ListFragment : Fragment() {
     private lateinit var binding: FragmentListBinding
@@ -41,24 +40,23 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.todoRecyclerView.adapter = adapter
+        adapter.setOnTaskClickListener{task ->
+            if (activity == null)return@setOnTaskClickListener
+            val fragment = EditTodoFragment()
+            val bundle = Bundle()
+            bundle.putParcelable(Constants.PASSED_TASK , task)
+            fragment.arguments =bundle
+            parentFragmentManager.beginTransaction().replace(R.id.fragment_container , fragment)
+                .commit()
+        }
         binding.calendarView.selectedDate = selectedDate
         binding.calendarView.setOnDateChangedListener { widget, date, selected ->
             selectedDate = date
             refreshTodoList()
         }
         refreshTodoList()
-        initListeners()
     }
 
-    private fun initListeners() {
-        adapter.onTodoClick = object :TodoAdapter.RecyclerViewItemClickListener{
-            override fun onItemClick() {
-                val intent = Intent(activity , EditTodoActivity::class.java)
-                startActivity(intent)
-            }
-
-        }
-    }
 
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -7,6 +7,7 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.todo.database.MyDatebase
 import com.example.todo.database.model.Todo
 import com.example.todo.databinding.ItemTodoBinding
 
@@ -20,8 +21,16 @@ class TodoAdapter(private var todos: List<Todo>) : Adapter<TodoAdapter.ViewHolde
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = todos?.get(position) ?:return
         holder.binding.todoTitleTv.text = todos[position].title
         holder.binding.todoDescriptionTv.text = todos[position].description
+        holder.itemView.setOnClickListener {
+            onTaskClickListener?.onTaskClicked(item)
+        }
+        holder.binding.leftItem.setOnClickListener {
+            MyDatebase.getInstance(holder.binding.root.context).todoDao().delete(item)
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -29,11 +38,19 @@ class TodoAdapter(private var todos: List<Todo>) : Adapter<TodoAdapter.ViewHolde
     }
 
 
-    interface OnItemClickListeners {
-        fun onItemClick(todoTitle: String, todoDetails: String, todoDate: String)
+   private var onTaskClickListener: OnTaskClickListener? = null
+    fun setOnTaskClickListener(listener:OnTaskClickListener){
+        onTaskClickListener = listener
+
     }
 
-    fun updateTodos(newTodosList: List<Todo>) {
+
+
+    fun interface OnTaskClickListener{
+        fun onTaskClicked(todo : Todo)
+    }
+
+    fun updateTodos(newTodosList: List<Todo>){
         todos = newTodosList
         notifyDataSetChanged()
     }
@@ -42,9 +59,4 @@ class TodoAdapter(private var todos: List<Todo>) : Adapter<TodoAdapter.ViewHolde
 
     }
 
-    var onTodoClick: RecyclerViewItemClickListener? = null
-
-    interface RecyclerViewItemClickListener{
-        fun onItemClick()
-    }
 }
